@@ -32,16 +32,13 @@ var init = function (window) {
         }
 
         // TODO 3 / 8 : Call the drawCircle() function 
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
-
+        for (var loopnum = 0; loopnum < 100; loopnum ++) {
+            drawCircle();
+        }
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
         ////////////////////////////////////////////////////////////
-        
+    
         /* 
         This Function is called 60 times/second producing 60 frames/second.
         In each frame, for every circle, it should redraw that circle
@@ -49,19 +46,14 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
-            physikz.updatePosition();
-            physikz.updatePosition();
-            physikz.updatePosition();
-            physikz.updatePosition();
-            physikz.updatePosition();
-            
+            for (var i = 0; i< circles.length; i++){
+                var eachCircle = circles[i];
+                physikz.updatePosition(eachCircle);
+                game.checkCirclePosition(eachCircle);
+            }
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            game.checkCirclePosition();
-            game.checkCirclePosition();
-            game.checkCirclePosition();
-            game.checkCirclePosition();
-            game.checkCirclePosition();
-        
+
+
             // TODO 9 : Iterate over the array
            
             
@@ -78,10 +70,18 @@ var init = function (window) {
             if ( circle.x > canvas.width ) {
                 circle.x = 0;
             }
+            if ( circle.y > canvas.height ) {
+                circle.y = 0;
+            }
+            if ( circle.x < 0 ) {
+                circle.x = canvas.width;
+            }
+            if ( circle.y < 0 ) {
+                circle.y = canvas. height;
+            }
+            // if the circle has gone past the BOTTOM of the screen then place it on the TOP//
             
             // TODO 7 : YOUR CODE STARTS HERE //////////////////////
-            
-
 
             // YOUR TODO 7 CODE ENDS HERE //////////////////////////
         }
